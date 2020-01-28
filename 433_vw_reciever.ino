@@ -1,5 +1,8 @@
 #include <VirtualWire.h>
 
+int data_in[2];
+int data_out[2];
+
 // к 11 выводу принимающей платы – любой из двух выводов DATA приёмника.
 void setup()
 {
@@ -23,19 +26,19 @@ void loop()
     {
       return; 
     }
-    char command = buf[2]; // Команда находится на индексе 2
+    //char command = buf[2]; // Команда находится на индексе 2
     // Числовой параметр начинается с индекса 4
-    i = 4; 
-    int number = 0;
+    i = 2; 
+    data_in[0] = 0;
     // Поскольку передача идет посимвольно, то нужно преобразовать набор символов в число
     while (buf[i] != ' ')
     {
-      number *= 10;
-      number += buf[i] - '0';
+      data_in[0] *= 10;
+      data_in[0] += buf[i] - '0';
       i++;
     }
-    Serial.print(command);
-    Serial.print(" ");
-    Serial.println(number);
+    //Serial.print(command);
+    //Serial.print(" ");
+    Serial.println(data_in[0]);
   }
 }
